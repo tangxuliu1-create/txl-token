@@ -16,6 +16,7 @@
       --radius: 20px;
       --shadow: 0 16px 40px rgba(2,6,23,.08);
       --sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     }
 
     * { box-sizing: border-box }
@@ -42,26 +43,113 @@
       padding: 32px 18px 64px;
     }
 
-    header {
-      margin-bottom: 18px;
+    /* ===== Header ===== */
+    .hero{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:22px;
+      box-shadow:var(--shadow);
+      padding:16px 18px 14px;
+      margin-bottom:22px;
+    }
+
+    /* 顶部一行：左侧 logo+标题；右侧按钮
+       关键：align-items:flex-start 让按钮与标题顶部(T)对齐 */
+    .heroTop{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
+    }
+
+    .heroLeft{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      min-width:0;
+    }
+
+    .logo{
+      width:44px;
+      height:44px;
+      border-radius:14px;
+      background: radial-gradient(110% 110% at 30% 20%, #60A5FA 0%, #2563EB 55%, #1E3A8A 100%);
+      box-shadow: 0 10px 24px rgba(37,99,235,.22);
+      flex:0 0 auto;
+    }
+
+    .heroText{
+      min-width:0;
     }
 
     h1 {
-      font-size: 36px;
-      margin: 0 0 6px;
+      font-size: 28px; /* 更紧凑 */
+      margin: 0 0 2px;
       letter-spacing: -0.4px;
+      line-height: 1.1;
     }
 
-    .meta {
-      font-size: 14px;
-      color: var(--muted);
+    .sub{
+      margin:0;
+      color:var(--muted);
+      font-size:13.5px;
     }
 
-    .meta a {
-      margin-right: 14px;
-      font-size: 14px;
+    /* 右侧按钮更小，并与标题顶部对齐 */
+    .heroRight{
+      display:flex;
+      align-items:flex-start;
+      gap:8px;
+      flex-wrap:nowrap;
+      justify-content:flex-end;
+      padding-top:0;
+      white-space:nowrap;
     }
 
+    .navBtn{
+      display:inline-block;
+      padding:6px 11px;          /* 更小 */
+      border-radius:10px;
+      background:#EFF6FF;
+      border:1px solid #BFDBFE;
+      color:#1D4ED8;
+      font-size:12.5px;          /* 更小 */
+      white-space:nowrap;
+    }
+
+    /* pills 单行且更小：不换行、不超过按钮区域 */
+    .heroMeta{
+      margin-top:10px;
+      overflow:hidden;
+    }
+
+    .pills{
+      display:flex;
+      flex-wrap:nowrap;          /* 不换行 */
+      gap:7px;
+      margin-top:0;
+      min-width:0;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:5px 9px;           /* 更小 */
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:#F8FAFF;
+      color:#334155;
+      font-size:12px;            /* 更小 */
+      white-space:nowrap;
+    }
+
+    .pill b{
+      font-weight:700;
+      color:#0F172A;
+    }
+
+    /* ===== Cards ===== */
     h2 {
       font-size: 20px;
       margin: 0 0 12px;
@@ -104,17 +192,19 @@
       color: var(--muted);
     }
 
-    footer a {
-      margin: 0 6px;
-      font-size: 12.5px;
+    @media (max-width: 760px) {
+      .heroTop{ flex-direction:column; align-items:stretch; }
+      .heroRight{ justify-content:flex-start; }
+      .heroMeta{ overflow:visible; }
+      .pills{ flex-wrap:wrap; }  /* 移动端允许换行，避免挤压 */
     }
 
     @media (max-width: 640px) {
-      h1 { font-size: 28px }
+      h1 { font-size: 26px }
       h2 { font-size: 18px }
       .container { padding: 24px 14px 56px }
       .card { padding: 20px }
-      .meta a { display: inline-block; margin: 4px 10px 0 0 }
+      .logo{ width:44px; height:44px; border-radius:14px; }
     }
   </style>
 </head>
@@ -122,31 +212,48 @@
 <body>
   <div class="container">
 
-    <header>
-      <h1>TXL Litepaper</h1>
-      <p class="meta">
-        Tang Xuliu (TXL) ·
-        <a href="https://tangxuliu.xyz" target="_blank">Official Website</a>
-        <a href="https://tangxuliu.xyz/litepaper.html">Litepaper</a>
-        <a href="mailto:contact@tangxuliu.xyz">Contact</a>
-      </p>
-    </header>
+    <!-- Header -->
+    <section class="hero">
+      <div class="heroTop">
+        <div class="heroLeft">
+          <div class="logo" aria-hidden="true"></div>
+          <div class="heroText">
+            <h1>TXL Litepaper</h1>
+            <p class="sub">Tang Xuliu (TXL)</p>
+          </div>
+        </div>
 
-    <!-- 以下内容：逐字不改 -->
+        <div class="heroRight">
+          <a class="navBtn" href="https://tangxuliu.xyz" target="_blank" rel="noopener">Official Website</a>
+          <a class="navBtn" href="mailto:contact@tangxuliu.xyz">Contact Email</a>
+        </div>
+      </div>
 
+      <div class="heroMeta" aria-label="Key attributes">
+        <div class="pills">
+          <span class="pill"><b>Standard</b> ERC-20</span>
+          <span class="pill"><b>Network</b> Ethereum Mainnet</span>
+          <span class="pill"><b>Supply</b> 10,000,000 TXL</span>
+          <span class="pill"><b>Status</b> On-chain</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1. Introduction -->
     <div class="card">
       <h2>1. Introduction</h2>
       <p>
-        Tang Xuliu (TXL) is an experimental ERC-20 token deployed on the Ethereum blockchain.
-        The project is designed for personal exploration of decentralized infrastructure,
-        on-chain asset mechanics, and token economics.
+        
+
+Tang Xuliu (TXL) is an ERC-20 token deployed on the Ethereum blockchain, supporting on-chain interactions, liquidity-related activities, vesting mechanisms, and ecosystem participation within Ethereum.
       </p>
       <p>
-        TXL is not intended as an investment product, security, or financial instrument.
-        The purpose of this project is technical experimentation and transparent on-chain disclosure.
+        
+TXL does not represent equity, ownership, or governance rights in any entity, and no guarantees of returns are made. All token-related activities and data are publicly verifiable on-chain.
       </p>
     </div>
 
+    <!-- 2. Token Overview -->
     <div class="card">
       <h2>2. Token Overview</h2>
       <ul>
@@ -158,6 +265,7 @@
       </ul>
     </div>
 
+    <!-- 3. Distribution & Locking -->
     <div class="card">
       <h2>3. Distribution & Locking</h2>
       <p><strong>Initial Circulating Supply:</strong></p>
@@ -175,42 +283,37 @@
       </ul>
     </div>
 
-    <div class="card">
-      <h2>4. Use Case</h2>
-      <p>
-        TXL is used for testing liquidity mechanics, smart contract interactions,
-        vesting structures, and general on-chain behavior.
-      </p>
-      <p>
-        The token does not represent ownership, governance rights,
-        dividends, or profit-sharing.
-      </p>
-    </div>
+    
 
+    <!-- 4. Transparency -->
     <div class="card">
-      <h2>5. Transparency</h2>
+      <h2>4. Transparency</h2>
       <p>
         All token contracts, liquidity pools, and lockups are deployed on-chain
         and can be independently verified through Ethereum block explorers.
       </p>
+      <p>
+       
+      </p>
     </div>
 
+    <!-- 5. Disclaimer -->
     <div class="card">
-      <h2>6. Disclaimer</h2>
+      <h2>5. Disclaimer</h2>
       <div class="notice">
-        TXL is a personal experimental project.
-        It is not an investment product and carries inherent market risks.
-        Users interact with the token at their own discretion.
+        TXL is an independently developed blockchain project. Participation involves market risks and the inherent uncertainties of digital assets, and users should make independent decisions based on their own assessment.
       </div>
     </div>
 
     <footer>
-      © 2026 Tang Xuliu (TXL) ·
-      <a href="https://tangxuliu.xyz">Website</a> ·
-      <a href="https://tangxuliu.xyz/litepaper.html">Litepaper</a> ·
-      <a href="mailto:contact@tangxuliu.xyz">Contact</a>
+      © <span id="y"></span> Tang Xuliu (TXL)<br />
+      <span style="display:inline-block;margin-top:6px;">Information Disclosure · Independently Developed ERC-20 Token</span>
     </footer>
 
   </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
