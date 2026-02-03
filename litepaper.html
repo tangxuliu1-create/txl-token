@@ -5,7 +5,6 @@
   <title>TXL Litepaper – Tang Xuliu (TXL)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- ✅ 与 txl首页.html 完全一致的 UI 风格 -->
   <style>
     :root {
       --bg: #F6F7FB;
@@ -44,13 +43,23 @@
     }
 
     header {
-      margin-bottom: 28px;
+      margin-bottom: 18px;
     }
 
     h1 {
       font-size: 36px;
       margin: 0 0 6px;
       letter-spacing: -0.4px;
+    }
+
+    .meta {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .meta a {
+      margin-right: 14px;
+      font-size: 14px;
     }
 
     h2 {
@@ -79,23 +88,6 @@
       margin-bottom: 22px;
     }
 
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 9px 14px;
-      border-radius: 10px;
-      background: #EFF6FF;
-      border: 1px solid #BFDBFE;
-      color: #1D4ED8;
-      font-size: 13.5px;
-    }
-
     .notice {
       background: #F8FAFF;
       border-left: 4px solid #93C5FD;
@@ -112,11 +104,17 @@
       color: var(--muted);
     }
 
+    footer a {
+      margin: 0 6px;
+      font-size: 12.5px;
+    }
+
     @media (max-width: 640px) {
       h1 { font-size: 28px }
       h2 { font-size: 18px }
       .container { padding: 24px 14px 56px }
       .card { padding: 20px }
+      .meta a { display: inline-block; margin: 4px 10px 0 0 }
     }
   </style>
 </head>
@@ -126,20 +124,15 @@
 
     <header>
       <h1>TXL Litepaper</h1>
-      <p>Tang Xuliu (TXL)</p>
+      <p class="meta">
+        Tang Xuliu (TXL) ·
+        <a href="https://tangxuliu.xyz" target="_blank">Official Website</a>
+        <a href="https://tangxuliu.xyz/litepaper.html">Litepaper</a>
+        <a href="mailto:contact@tangxuliu.xyz">Contact</a>
+      </p>
     </header>
 
-    <!-- ✅ Contact & Links（与首页一致，仅结构补齐，不影响合规） -->
-    <div class="card">
-      <h2>Contact & Links</h2>
-      <div class="buttons">
-        <a class="btn" href="https://tangxuliu.xyz" target="_blank">Official Website</a>
-        <a class="btn" href="https://tangxuliu.xyz/litepaper.html">TXL Litepaper</a>
-        <a class="btn" href="mailto:contact@tangxuliu.xyz">Contact Email</a>
-      </div>
-    </div>
-
-    <!-- ⚠️ 以下内容：逐字不改，只换容器 -->
+    <!-- 以下内容：逐字不改 -->
 
     <div class="card">
       <h2>1. Introduction</h2>
@@ -206,13 +199,16 @@
       <h2>6. Disclaimer</h2>
       <div class="notice">
         TXL is a personal experimental project.
-        It is not an investment product and carries inherent technical and market risks.
+        It is not an investment product and carries inherent market risks.
         Users interact with the token at their own discretion.
       </div>
     </div>
 
     <footer>
-      © 2026 Tang Xuliu (TXL)
+      © 2026 Tang Xuliu (TXL) ·
+      <a href="https://tangxuliu.xyz">Website</a> ·
+      <a href="https://tangxuliu.xyz/litepaper.html">Litepaper</a> ·
+      <a href="mailto:contact@tangxuliu.xyz">Contact</a>
     </footer>
 
   </div>
