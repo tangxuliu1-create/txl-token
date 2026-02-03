@@ -34,107 +34,116 @@
     .container{
       max-width:960px;
       margin:0 auto;
-      padding:20px 18px 60px;
+      padding:28px 18px 60px;
     }
 
-    /* ✅ 顶部信息条（正式头部） */
-    .topbar{
+    /* ===== Header (Litepaper-aligned) ===== */
+    .hero{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:22px;
+      box-shadow:var(--shadow);
+      padding:16px 18px 14px;
+      margin-bottom:18px;
+    }
+
+    /* 顶部一行：左侧 logo+标题；右侧按钮
+       align-items:flex-start 让按钮与标题顶部对齐 */
+    .heroTop{
       display:flex;
-      align-items:center;
+      align-items:flex-start;
       justify-content:space-between;
       gap:14px;
-      padding:14px 16px;
-      margin:10px 0 18px;
-      border:1px solid var(--line);
-      border-radius:999px;
-      background:rgba(255,255,255,.72);
-      box-shadow:0 10px 26px rgba(2,6,23,.06);
-      backdrop-filter:saturate(1.2) blur(10px);
     }
-    .brand{
+
+    .heroLeft{
       display:flex;
-      align-items:center;
-      gap:10px;
+      gap:14px;
+      align-items:flex-start;
       min-width:0;
     }
-    .logo{
-      width:34px;
-      height:34px;
-      border-radius:10px;
-      background:linear-gradient(180deg, #60A5FA, #2563EB);
-      box-shadow:0 10px 20px rgba(37,99,235,.25);
-      flex:0 0 auto;
-    }
-    .brand .name{
-      font-weight:700;
-      letter-spacing:-.2px;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-    .tag{
-      border:1px solid #BFDBFE;
-      background:#EFF6FF;
-      color:#1D4ED8;
-      padding:8px 10px;
-      border-radius:999px;
-      font-size:12.5px;
-      white-space:nowrap;
-      flex:0 0 auto;
-    }
-    .top-actions{
+
+    .heroRight{
       display:flex;
-      gap:10px;
-      flex-wrap:wrap;
+      align-items:flex-start;
+      gap:8px;
+      flex-wrap:nowrap;
       justify-content:flex-end;
+      padding-top:0;
+      white-space:nowrap;
     }
 
-    header{
-      margin-bottom:14px;
+    .heroMeta{
+      margin-top:10px;
+      overflow:hidden;
     }
+
+    .logo{
+      width:44px;
+      height:44px;
+      border-radius:14px;
+      background: radial-gradient(110% 110% at 30% 20%, #60A5FA 0%, #2563EB 55%, #1E3A8A 100%);
+      box-shadow: 0 10px 24px rgba(37,99,235,.22);
+      flex:0 0 auto;
+    }
+
+    .heroText{ min-width:0; }
 
     h1{
-      font-size:38px;
-      margin:0 0 12px;
-      letter-spacing:-.5px;
+      font-size:28px;
+      margin:0 0 2px;
+      letter-spacing:-.4px;
+      line-height:1.1;
     }
 
-    .subtitle{
-      font-size:15.5px;
-      color:var(--muted);
-      max-width:720px;
-      margin:0;
+    /* 头部 subtitle 之前按你的要求隐藏（避免重复/掉价） */
+    .subtitle{ display:none; }
+
+    .navBtn{
+      display:inline-block;
+      padding:6px 11px;
+      border-radius:10px;
+      background:#EFF6FF;
+      border:1px solid #BFDBFE;
+      color:#1D4ED8;
+      font-size:12.5px;
+      white-space:nowrap;
     }
 
-    /* ✅ NEW: 3 pills（Standard / Network / Supply） */
     .pills{
       display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin:12px 0 18px;
+      flex-wrap:nowrap; /* 桌面端单行 */
+      gap:7px;
+      margin-top:0;
+      min-width:0;
     }
+
     .pill{
       display:inline-flex;
       align-items:center;
       gap:8px;
-      padding:8px 12px;
+      padding:5px 9px;
       border-radius:999px;
       border:1px solid var(--line);
-      background:rgba(255,255,255,.75);
-      box-shadow:0 8px 20px rgba(2,6,23,.05);
-      font-size:13.5px;
+      background:#F8FAFF;
       color:#334155;
-      backdrop-filter:saturate(1.1) blur(8px);
-    }
-    .pill .k{
-      font-weight:600;
-      color:#0F172A;
-    }
-    .pill .v{
-      color:#475569;
+      font-size:12px;
       white-space:nowrap;
     }
 
+    .pill b{
+      font-weight:700;
+      color:#0F172A;
+    }
+
+    @media (max-width:760px){
+      .heroTop{ flex-direction:column; align-items:stretch; }
+      .heroRight{ justify-content:flex-start; }
+      .heroMeta{ overflow:visible; }
+      .pills{ flex-wrap:wrap; } /* 移动端允许换行 */
+    }
+
+    /* ===== Cards ===== */
     .card{
       background:var(--card);
       border:1px solid var(--line);
@@ -174,23 +183,11 @@
       color:#334155;
     }
 
-    /* ✅ 与 Litepaper 同风格按钮 */
-    .buttons{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:10px;
-    }
-
-    .btn{
-      display:inline-block;
-      padding:9px 14px;
-      border-radius:10px;
-      background:#EFF6FF;
-      border:1px solid #BFDBFE;
-      color:#1D4ED8;
-      font-size:13.5px;
-      text-decoration:none;
+    .mono{
+      font-family:var(--mono);
+      font-size:13.6px;
+      color:#0F172A;
+      word-break:break-all;
     }
 
     .notice{
@@ -203,6 +200,28 @@
       color:#334155;
     }
 
+    .refRow{
+      display:grid;
+      grid-template-columns:160px 1fr auto;
+      gap:10px 14px;
+      align-items:center;
+      padding:10px 0;
+      border-top:1px dashed #E5E7EB;
+    }
+    .refRow:first-of-type{ border-top:0; padding-top:0; }
+    .refKey{ color:#334155; font-weight:600; font-size:14px; }
+    .refActions{ display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
+    .refBtn{
+      display:inline-block;
+      padding:8px 12px;
+      border-radius:12px;
+      background:#FFFFFF;
+      border:1px solid var(--line);
+      color:#1D4ED8;
+      font-size:13px;
+      white-space:nowrap;
+    }
+
     footer{
       text-align:center;
       margin-top:26px;
@@ -210,14 +229,26 @@
       color:var(--muted);
     }
 
+    @media (max-width:760px){
+      /* 移动端：改为单列，pills 自然全宽 */
+      .heroGrid{
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "left"
+          "right"
+          "pills";
+      }
+      .heroRight{ justify-content:flex-start; }
+    }
+
     @media (max-width:600px){
-      h1{font-size:30px}
+      h1{font-size:28px}
       .kv{grid-template-columns:1fr}
-      .container{padding:18px 14px 50px}
-      .topbar{border-radius:18px; padding:12px 12px}
-      .top-actions{justify-content:flex-start}
-      .tag{display:none}
-      .pill{font-size:13px}
+      .refRow{ grid-template-columns:1fr; }
+      .refActions{ justify-content:flex-start; }
+      .container{padding:22px 14px 50px}
+      .hero{ padding:16px; }
+      .logo{ width:44px; height:44px; border-radius:14px; }
     }
   </style>
 </head>
@@ -225,36 +256,34 @@
 <body>
   <div class="container">
 
-    <!-- ✅ 头部条 -->
-    <div class="topbar" aria-label="top bar">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <div class="name">Tang Xuliu (TXL)</div>
+    <!-- Header -->
+    <section class="hero">
+      <div class="heroTop">
+        <div class="heroLeft">
+          <div class="logo" aria-hidden="true"></div>
+          <div class="heroText">
+            <h1>Tang Xuliu (TXL)</h1>
+            <!-- subtitle 已隐藏 -->
+          </div>
+        </div>
+
+        <div class="heroRight">
+          <a class="navBtn" href="https://tangxuliu.xyz/litepaper.html" target="_blank" rel="noopener">TXL Litepaper</a>
+          <a class="navBtn" href="mailto:contact@tangxuliu.xyz">Contact Email</a>
+        </div>
       </div>
 
-      <div class="tag">Information Disclosure</div>
-
-      <div class="top-actions" aria-label="quick links">
-        <a class="btn" href="https://tangxuliu.xyz" target="_blank" rel="noopener">Official Website</a>
-        <a class="btn" href="https://tangxuliu.xyz/litepaper.html" target="_blank" rel="noopener">TXL Litepaper</a>
-        <a class="btn" href="mailto:contact@tangxuliu.xyz">Contact Email</a>
+      <div class="heroMeta" aria-label="Key attributes">
+        <div class="pills">
+          <span class="pill"><b>Standard</b> ERC-20</span>
+          <span class="pill"><b>Network</b> Ethereum Mainnet</span>
+          <span class="pill"><b>Supply</b> 10,000,000 TXL</span>
+          <span class="pill"><b>Status</b> On-chain</span>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <header>
-      <h1>Tang Xuliu (TXL)</h1>
-      <p class="subtitle">
-        TXL is an experimental ERC-20 token deployed on Ethereum for personal exploration of on-chain assets, token mechanics, and decentralized infrastructure.
-      </p>
-    </header>
-
-    <!-- ✅ NEW: 顶部 3 个小 pill（不改变原内容，只是补充展示） -->
-    <div class="pills" aria-label="quick facts">
-      <div class="pill"><span class="k">Standard</span><span class="v">ERC-20</span></div>
-      <div class="pill"><span class="k">Network</span><span class="v">Ethereum Mainnet</span></div>
-      <div class="pill"><span class="k">Supply</span><span class="v">10,000,000 TXL</span></div>
-    </div>
-
+    <!-- Token Summary（保留） -->
     <div class="card">
       <h2>Token Summary</h2>
       <div class="kv">
@@ -265,28 +294,54 @@
       </div>
 
       <div class="notice">
-        Tang Xuliu (TXL) does not represent any equity, investment product, or promise of profit.
+       This page is for information disclosure purposes only and does not constitute financial advice. No guarantees are made regarding outcomes, returns, or profits. Digital assets involve market risks,please invest cautiously.
+
+
       </div>
     </div>
 
+    <!-- On-chain References（保留） -->
     <div class="card">
-      <h2>Contact & Links</h2>
-      <div class="buttons">
-        <a class="btn" href="https://tangxuliu.xyz" target="_blank" rel="noopener">Official Website</a>
-        <a class="btn" href="https://tangxuliu.xyz/litepaper.html" target="_blank" rel="noopener">TXL Litepaper</a>
-        <a class="btn" href="mailto:contact@tangxuliu.xyz">Contact Email</a>
-      </div>
-    </div>
+      <h2>On-chain References</h2>
 
-    <div class="card">
-      <h2>Project Overview</h2>
-      <p>
-        Tang Xuliu (TXL) is an experimental ERC-20 token deployed on the Ethereum blockchain.
-        This project is created for personal exploration of on-chain assets, token mechanics,
-        and decentralized infrastructure.
+      <div class="refRow">
+        <div class="refKey">Token Contract</div>
+        <div class="mono">0x68c98Bb7d641c377B23cC4886d84C16a4eC3d5b8</div>
+        <div class="refActions">
+          <a class="refBtn" href="https://etherscan.io/address/0x68c98Bb7d641c377B23cC4886d84C16a4eC3d5b8" target="_blank" rel="noopener">View on Etherscan</a>
+        </div>
+      </div>
+
+      <div class="refRow">
+        <div class="refKey">Liquidity Pool</div>
+        <div class="mono">0x544d96690114962De062BcED8566e6f4e6241Df0</div>
+        <div class="refActions">
+          <a class="refBtn" href="https://etherscan.io/address/0x544d96690114962De062BcED8566e6f4e6241Df0" target="_blank" rel="noopener">View on Etherscan</a>
+        </div>
+      </div>
+
+      <div class="refRow">
+        <div class="refKey">Vesting / Lock Contract</div>
+        <div class="mono">0xb0f535a1aCbBE03164FF3F1d8F2EcdeD5d2Bd6c9</div>
+        <div class="refActions">
+          <a class="refBtn" href="https://etherscan.io/address/0xb0f535a1aCbBE03164FF3F1d8F2EcdeD5d2Bd6c9" target="_blank" rel="noopener">View on Etherscan</a>
+        </div>
+      </div>
+
+      <p style="margin-top:12px;">
+        All references above are publicly verifiable on Ethereum mainnet via block explorers.
       </p>
     </div>
 
+    <!-- Project Overview：保留你指定版本 -->
+    <div class="card">
+      <h2>Project Overview</h2>
+      <p>
+        Tang Xuliu (TXL) is an ERC-20 token deployed on Ethereum, designed for on-chain asset structure, token mechanics, and decentralized infrastructure exploration.
+      </p>
+    </div>
+
+    <!-- Tokenomics & Vesting（保留） -->
     <div class="card">
       <h2>Tokenomics & Vesting</h2>
       <p><strong>Total Supply:</strong> 10,000,000 TXL (Fixed Supply)</p>
@@ -306,27 +361,27 @@
       </ul>
 
       <p>
-        The initial circulating supply is used for liquidity provisioning,
-        testing, and on-chain experimentation.
+        The initial circulating supply is allocated for liquidity provisioning and on-chain participation.
       </p>
     </div>
 
+    <!-- Transparency & Disclaimer（保留） -->
     <div class="card">
       <h2>Transparency & Disclaimer</h2>
       <p>
-        TXL is a personal and experimental blockchain project.
-        The token is not intended to be used as an investment vehicle.
-        Users should conduct their own research before interacting
-        with the token or its smart contracts.
+        TXL is an independently developed blockchain project with publicly verifiable on-chain data.
+        We encourage users to review on-chain smart contract data before participating in any token-related activities.
       </p>
       <div class="notice">
-        Risk reminder: interacting on-chain involves irreversible transactions and market risks. Please assess suitability and proceed with caution.
+        Risk reminder: interacting on-chain involves irreversible transactions and market risks. Please invest cautiously.
       </div>
     </div>
 
     <footer>
-      © <span id="y"></span> Tang Xuliu (TXL). This page is for information disclosure only.
+      © <span id="y"></span> Tang Xuliu (TXL). This page is for information disclosure only.<br />
+      <span style="display:inline-block;margin-top:6px;">Information Disclosure · Independently Developed ERC-20 Token</span>
     </footer>
+
   </div>
 
   <script>
