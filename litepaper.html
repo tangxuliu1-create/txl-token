@@ -32,60 +32,225 @@
     }
     a{color:var(--primary); text-decoration:none}
     a:hover{text-decoration:underline}
+
     .wrap{max-width: 980px; margin:0 auto; padding: 28px 18px 70px;}
+    .topbar{
+      display:flex; justify-content:space-between; align-items:center;
+      padding:14px 18px;
+      background:rgba(255,255,255,.85);
+      backdrop-filter: blur(8px);
+      border:1px solid var(--line);
+      border-radius:999px;
+    }
+    .brand{display:flex; align-items:center; gap:10px; font-weight:700}
+    .logo{
+      width:34px;height:34px;border-radius:10px;
+      background: linear-gradient(135deg,#2563EB,#60A5FA);
+      box-shadow:0 6px 16px rgba(37,99,235,.25);
+    }
+    .tag{
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      background:#EFF6FF;
+      border:1px solid #BFDBFE;
+      color:#1D4ED8;
+      white-space:nowrap;
+    }
+
+    header{margin:26px 0 20px}
+    h1{margin:0 0 10px; font-size:40px; letter-spacing:-.6px}
+    .subtitle{
+      margin:0;
+      color:var(--muted);
+      max-width:75ch;
+      line-height:1.75;
+      font-size:15.5px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:16px;
+    }
+    @media(max-width:900px){.grid{grid-template-columns:1fr} h1{font-size:34px}}
+
     .card{
       background:var(--card);
       border:1px solid var(--line);
       border-radius:var(--radius);
       box-shadow:var(--shadow);
-      padding:18px;
-      margin-bottom:16px;
+      padding:18px 18px;
     }
-    h1{font-size:36px;margin-bottom:10px}
-    h2{font-size:16px;margin-bottom:10px}
-    p{color:var(--muted);line-height:1.8;font-size:14.5px}
-    ul{color:var(--muted);font-size:14.5px;line-height:1.8}
+    .card h2{
+      margin:0 0 10px;
+      font-size:16px;
+      letter-spacing:.2px;
+    }
+    p{margin:10px 0; color:var(--muted); line-height:1.8; font-size:14.5px}
+    ul{margin:8px 0 0; padding-left:18px; color:var(--muted); line-height:1.85; font-size:14.5px}
+
+    .kv{
+      display:grid;
+      grid-template-columns:170px 1fr;
+      gap:10px 14px;
+    }
+    @media(max-width:520px){.kv{grid-template-columns:1fr}}
+    .k{font-weight:700; font-size:13px}
+    .v{font-size:14.5px}
+    .mono{font-family:var(--mono); font-size:13.5px}
+
     .notice{
       margin-top:12px;
-      padding:12px;
+      padding:12px 12px;
       background:var(--notice);
       border-left:4px solid #93C5FD;
       border-radius:14px;
+      color:#334155;
+      font-size:14px;
+      line-height:1.8;
     }
-    .footer{text-align:center;font-size:12px;color:var(--muted)}
+
+    .footer{
+      margin-top:20px;
+      text-align:center;
+      font-size:12.5px;
+      color:var(--muted);
+      line-height:1.7;
+    }
   </style>
 </head>
 
 <body>
 <div class="wrap">
-  <h1>Tang Xuliu (TXL)</h1>
-
-  <div class="card">
-    <h2>Official Resources</h2>
-    <p>
-      Official Website:<br>
-      <a href="https://tangxuliu.xyz" target="_blank">https://tangxuliu.xyz</a>
-    </p>
-    <p>
-      Litepaper:<br>
-      <a href="https://tangxuliu.xyz/litepaper.html" target="_blank">TXL Litepaper</a>
-    </p>
-    <p>
-      Contact Email:<br>
-      <a href="mailto:contact@tangxuliu.xyz">contact@tangxuliu.xyz</a>
-    </p>
+  <div class="topbar">
+    <div class="brand"><div class="logo"></div> Tang Xuliu (TXL)</div>
+    <div class="tag">Information Disclosure</div>
   </div>
 
-  <div class="card">
-    <h2>Disclaimer</h2>
-    <div class="notice">
-      Tang Xuliu (TXL) is an experimental blockchain project and does not represent
-      any form of investment, security, or promise of financial return.
-    </div>
+  <header>
+    <h1>Tang Xuliu (TXL)</h1>
+    <p class="subtitle">
+      Experimental ERC-20 token deployed on Ethereum for personal exploration of on-chain assets,
+      token mechanics, and decentralized infrastructure.
+    </p>
+  </header>
+
+  <div class="grid">
+    <!-- Token Info -->
+    <section class="card">
+      <h2>Token Information</h2>
+      <div class="kv">
+        <div class="k">Token Name</div><div class="v">Tang Xuliu</div>
+        <div class="k">Symbol</div><div class="v mono">TXL</div>
+        <div class="k">Standard</div><div class="v">ERC-20</div>
+        <div class="k">Network</div><div class="v">Ethereum Mainnet</div>
+        <div class="k">Total Supply</div><div class="v">10,000,000 TXL</div>
+        <div class="k">Supply Type</div><div class="v">Fixed (no minting, no inflation)</div>
+      </div>
+      <div class="notice">
+        TXL does not represent equity, an investment product, or any promise of financial return.
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <aside class="card">
+      <h2>Official Resources</h2>
+      <p>
+        Official Website:<br>
+        <a href="https://tangxuliu.xyz" target="_blank">https://tangxuliu.xyz</a>
+      </p>
+      <p>
+        Litepaper:<br>
+        <a href="https://tangxuliu.xyz/litepaper.html" target="_blank">TXL Litepaper</a>
+      </p>
+      <p>
+        Contact Email:<br>
+        <a href="mailto:contact@tangxuliu.xyz">contact@tangxuliu.xyz</a>
+      </p>
+    </aside>
+
+    <!-- Overview -->
+    <section class="card" style="grid-column:1/-1">
+      <h2>Project Overview</h2>
+      <p>
+        Tang Xuliu (TXL) is an experimental ERC-20 token deployed on the Ethereum blockchain.
+        The project is created for personal exploration of on-chain assets, token mechanics,
+        and decentralized infrastructure.
+      </p>
+    </section>
+
+    <!-- Supply & Vesting -->
+    <section class="card">
+      <h2>Token Supply & Distribution</h2>
+      <p><strong>Initial Circulating Supply:</strong></p>
+      <ul>
+        <li>1,000,000 TXL initially available</li>
+        <li>Used for liquidity provisioning, testing, and on-chain interactions</li>
+      </ul>
+      <p><strong>Locked Supply:</strong></p>
+      <p>
+        9,000,000 TXL is locked using on-chain vesting contracts and is not transferable
+        until released according to the vesting schedule.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Vesting & Locking Mechanism</h2>
+      <ul>
+        <li>Total locked amount: 9,000,000 TXL</li>
+        <li>Monthly release: 150,000 TXL</li>
+        <li>Enforced by smart contracts</li>
+        <li>No manual override possible</li>
+      </ul>
+      <p><strong>Liquidity Lock:</strong></p>
+      <ul>
+        <li>Liquidity pool (LP) tokens are locked for 24 months</li>
+        <li>Liquidity cannot be withdrawn during the lock period</li>
+        <li>All locks are verifiable on-chain</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Liquidity & Market Interaction</h2>
+      <p>
+        TXL liquidity is provided on decentralized exchanges (DEXs) on Ethereum and paired with ETH.
+        Pricing is determined solely by market interaction.
+      </p>
+      <p>
+        TXL does not include buyback mechanisms, yield guarantees,
+        revenue sharing, or price stabilization features.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Transparency & Verifiability</h2>
+      <p>
+        All core components of TXL are verifiable on Ethereum mainnet, including:
+      </p>
+      <ul>
+        <li>Token contract</li>
+        <li>Total supply</li>
+        <li>Vesting contracts</li>
+        <li>Liquidity pool and LP lock</li>
+      </ul>
+    </section>
+
+    <section class="card" style="grid-column:1/-1">
+      <h2>Risk Disclosure & Disclaimer</h2>
+      <p>
+        TXL is an experimental blockchain project and involves risks such as smart contract
+        vulnerabilities, market volatility, liquidity risk, and regulatory uncertainty.
+      </p>
+      <div class="notice">
+        Tang Xuliu (TXL) is not an investment vehicle. Nothing on this page constitutes
+        financial or investment advice. Participation is voluntary and at the user’s own risk.
+      </div>
+    </section>
   </div>
 
   <div class="footer">
-    © <span id="y"></span> Tang Xuliu (TXL)
+    © <span id="y"></span> Tang Xuliu (TXL) · Information disclosure only
   </div>
 </div>
 
