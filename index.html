@@ -4,299 +4,71 @@
   <meta charset="UTF-8" />
   <title>Tang Xuliu (TXL) – ERC-20 Token on Ethereum</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Tang Xuliu (TXL) is an experimental ERC-20 token deployed on Ethereum for personal exploration of on-chain assets and decentralized infrastructure." />
+  <meta name="description" content="Tang Xuliu (TXL) is an experimental ERC-20 token deployed on Ethereum." />
 
   <style>
-    :root{
-      --bg:#F6F7FB;
-      --card:#FFFFFF;
-      --text:#0F172A;
-      --muted:#475569;
-      --line:#E2E8F0;
-      --primary:#2563EB;
-      --pill:#EFF6FF;
-      --shadow: 0 10px 30px rgba(2,6,23,.08);
-      --radius:18px;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-    }
-
-    *{box-sizing:border-box}
     body{
       margin:0;
-      font-family: var(--sans);
-      background: radial-gradient(1200px 600px at 10% 0%, #EEF2FF, transparent 60%),
-                  radial-gradient(900px 500px at 90% 10%, #DBEAFE, transparent 60%),
-                  var(--bg);
-      color: var(--text);
+      font-family:system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background:#F6F7FB;
+      color:#0F172A;
     }
-
-    a{color:var(--primary); text-decoration:none}
+    a{color:#2563EB;text-decoration:none}
     a:hover{text-decoration:underline}
-
-    .wrap{
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 28px 18px 60px;
-    }
-
-    .topbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding: 14px 16px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.8);
-      backdrop-filter: blur(8px);
-      border-radius: 999px;
-    }
-
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      font-weight: 700;
-      letter-spacing: .2px;
-    }
-    .logo{
-      width:34px; height:34px; border-radius: 10px;
-      background: linear-gradient(135deg, #2563EB, #60A5FA);
-      box-shadow: 0 6px 18px rgba(37,99,235,.25);
-    }
-    .tag{
-      font-size:12px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: var(--pill);
-      color: #1D4ED8;
-      border: 1px solid #BFDBFE;
-      white-space: nowrap;
-    }
-
-    header{
-      margin: 26px 0 18px;
-    }
-    h1{
-      font-size: 40px;
-      line-height: 1.15;
-      margin: 0 0 10px;
-      letter-spacing: -0.6px;
-    }
-    .subtitle{
-      color: var(--muted);
-      margin: 0;
-      max-width: 70ch;
-      font-size: 15.5px;
-      line-height: 1.7;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 16px;
-      margin-top: 18px;
-    }
-
-    @media (max-width: 860px){
-      .grid{grid-template-columns:1fr}
-      h1{font-size: 34px}
-    }
-
+    .wrap{max-width:900px;margin:auto;padding:30px 20px}
     .card{
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 18px 18px;
+      background:#fff;
+      border:1px solid #E2E8F0;
+      border-radius:16px;
+      padding:18px;
+      margin-bottom:16px;
     }
-
-    .card h2{
-      margin: 0 0 10px;
-      font-size: 16px;
-      letter-spacing: .2px;
-    }
-    .card p{
-      margin: 10px 0;
-      color: var(--muted);
-      line-height: 1.75;
-      font-size: 14.5px;
-    }
-
-    .kv{
-      display:grid;
-      grid-template-columns: 160px 1fr;
-      gap: 10px 14px;
-      padding-top: 6px;
-    }
-    @media (max-width: 520px){
-      .kv{grid-template-columns: 1fr}
-    }
-    .k{
-      color:#334155;
-      font-weight: 600;
-      font-size: 13.5px;
-    }
-    .v{
-      color:#0F172A;
-      font-size: 14.5px;
-    }
-    .mono{font-family: var(--mono); font-size: 13.5px}
-
-    .bullets{
-      margin: 10px 0 0;
-      padding-left: 18px;
-      color: var(--muted);
-      line-height: 1.8;
-      font-size: 14.5px;
-    }
-
-    .notice{
-      border-left: 4px solid #93C5FD;
-      background: #F8FAFF;
-      border-radius: 14px;
-      padding: 12px 12px;
-      margin-top: 12px;
-      color: #334155;
-      font-size: 14px;
-      line-height: 1.75;
-    }
-
-    .footer{
-      margin-top: 18px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.7;
-      text-align: center;
-    }
-
-    .links a{
-      display:inline-block;
-      margin-right: 12px;
-      margin-top: 6px;
-    }
-
-    .split{
-      display:flex; flex-wrap:wrap; gap:10px;
-      margin-top: 12px;
-    }
-    .pill{
-      border:1px solid var(--line);
-      background:#F8FAFC;
-      color:#0F172A;
-      border-radius:999px;
-      padding:8px 10px;
-      font-size:12.5px;
-    }
+    h1{font-size:36px}
+    h2{font-size:18px}
+    p{color:#475569;line-height:1.8}
+    .footer{text-align:center;font-size:12px;color:#64748B}
   </style>
 </head>
 
 <body>
-  <div class="wrap">
-    <div class="topbar">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <div>Tang Xuliu (TXL)</div>
-      </div>
-      <div class="tag">Disclosure / Information Page</div>
-    </div>
+<div class="wrap">
+  <h1>Tang Xuliu (TXL)</h1>
+  <p>
+    TXL is an experimental ERC-20 token deployed on Ethereum for personal exploration
+    of decentralized infrastructure and on-chain assets.
+  </p>
 
-    <header>
-      <h1>Tang Xuliu (TXL)</h1>
-      <p class="subtitle">
-        TXL is an experimental ERC-20 token deployed on Ethereum for personal exploration of on-chain assets, token mechanics, and decentralized infrastructure.
-      </p>
-      <div class="split" aria-label="quick facts">
-        <div class="pill">Standard: ERC-20</div>
-        <div class="pill">Network: Ethereum Mainnet</div>
-        <div class="pill">Supply: Fixed</div>
-      </div>
-    </header>
-
-    <div class="grid">
-      <section class="card" aria-label="token summary">
-        <h2>Token Summary</h2>
-        <div class="kv">
-          <div class="k">Token Name</div><div class="v">Tang Xuliu</div>
-          <div class="k">Symbol</div><div class="v mono">TXL</div>
-          <div class="k">Network</div><div class="v">Ethereum Mainnet</div>
-          <div class="k">Supply Model</div><div class="v">Fixed supply (10,000,000 TXL)</div>
-        </div>
-
-        <div class="notice">
-          Tang Xuliu (TXL) does not represent any equity, investment product, or promise of profit.
-        </div>
-      </section>
-
-      <aside class="card" aria-label="contact">
-        <h2>Contact & Links</h2>
-        <p class="links">
-          Official Website:
-          <a href="https://tangxuliu.com" target="_blank" rel="noopener">https://tangxuliu.com</a><br />
-          Litepaper:
-          <a href="https://tangxuliu.com/litepaper.html" target="_blank" rel="noopener">TXL Litepaper</a><br />
-          Contact Email:
-          <a href="mailto:contact@tangxuliu.com">contact@tangxuliu.com</a>
-        </p>
-        <p style="margin-top:12px">
-          For verification, provide on-chain links where applicable (e.g., token contract, vesting contract, lock proof).
-        </p>
-      </aside>
-
-      <section class="card" aria-label="project overview" style="grid-column: 1 / -1;">
-        <h2>Project Overview</h2>
-        <p>
-          Tang Xuliu (TXL) is an experimental ERC-20 token deployed on the Ethereum blockchain.
-          This project is created for personal exploration of on-chain assets, token mechanics,
-          and decentralized infrastructure.
-        </p>
-      </section>
-
-      <section class="card" aria-label="tokenomics and vesting">
-        <h2>Tokenomics & Vesting</h2>
-
-        <p><strong>Total Supply:</strong> 10,000,000 TXL (Fixed Supply)</p>
-
-        <p><strong>Initial Circulating Supply:</strong></p>
-        <ul class="bullets">
-          <li>1,000,000 TXL initially available</li>
-          <li>9,000,000 TXL locked via on-chain vesting contracts</li>
-        </ul>
-
-        <p><strong>Vesting & Lock Details:</strong></p>
-        <ul class="bullets">
-          <li>9,000,000 TXL locked using decentralized smart contracts</li>
-          <li>Monthly release: 150,000 TXL</li>
-          <li>Liquidity pool (LP) tokens locked for 24 months</li>
-          <li>All locks are verifiable on Ethereum mainnet</li>
-        </ul>
-
-        <p>
-          The initial circulating supply is used for liquidity provisioning,
-          testing, and on-chain experimentation.
-        </p>
-      </section>
-
-      <section class="card" aria-label="transparency and disclaimer">
-        <h2>Transparency & Disclaimer</h2>
-        <p>
-          TXL is a personal and experimental blockchain project.
-          The token is not intended to be used as an investment vehicle.
-          Users should conduct their own research before interacting
-          with the token or its smart contracts.
-        </p>
-        <div class="notice">
-          Risk reminder: smart contracts may contain vulnerabilities; interacting on-chain involves irreversible transactions and market risks.
-        </div>
-      </section>
-
-    </div>
-
-    <div class="footer">
-      © <span id="y"></span> Tang Xuliu (TXL). This page is for information disclosure only.
-    </div>
+  <div class="card">
+    <h2>Official Links</h2>
+    <p>
+      Official Website:<br>
+      <a href="https://tangxuliu.xyz" target="_blank">https://tangxuliu.xyz</a>
+    </p>
+    <p>
+      Litepaper:<br>
+      <a href="https://tangxuliu.xyz/litepaper.html" target="_blank">TXL Litepaper</a>
+    </p>
+    <p>
+      Contact Email:<br>
+      <a href="mailto:contact@tangxuliu.xyz">contact@tangxuliu.xyz</a>
+    </p>
   </div>
 
-  <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
-  </script>
+  <div class="card">
+    <h2>Disclaimer</h2>
+    <p>
+      Tang Xuliu (TXL) is not an investment product, security, or financial instrument.
+      This website is for information disclosure only.
+    </p>
+  </div>
+
+  <div class="footer">
+    © <span id="y"></span> Tang Xuliu (TXL)
+  </div>
+</div>
+
+<script>
+  document.getElementById("y").textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
