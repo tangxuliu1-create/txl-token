@@ -2,529 +2,654 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Tang Xuliu (TXL) – ERC-20 Token on Ethereum</title>
+  <title>Tang Xuliu (TXL) – Personal ERC-20 Token on Ethereum</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Basic SEO -->
-  <meta name="description" content="Tang Xuliu (TXL) is an independently developed ERC-20 token on Ethereum focused on transparent token mechanics, vesting research, and on-chain infrastructure experimentation. Publicly verifiable on-chain references and disclosures." />
+  <meta name="description" content="Tang Xuliu (TXL) is a personal ERC-20 token created by independent developer Tang Xuliu on Ethereum. A hands-on blockchain learning project with structured vesting, liquidity provisioning, and full on-chain transparency." />
   <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://tangxuliu.xyz/" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <style>
-    :root{
-      --bg:#F6F7FB;
-      --card:#FFFFFF;
-      --text:#0F172A;
-      --muted:#475569;
-      --line:#E2E8F0;
-      --primary:#2563EB;
-      --radius:18px;
-      --shadow:none;
-      --sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    :root {
+      --bg: #F7F8FC;
+      --card: #FFFFFF;
+      --text: #1A1D2B;
+      --muted: #5A6178;
+      --light: #8B92A8;
+      --line: #E4E7F0;
+      --primary: #3B6CF0;
+      --primary-soft: #EBF0FE;
+      --primary-border: #C5D4FA;
+      --accent: #10B981;
+      --accent-soft: #ECFDF5;
+      --warn-bg: #F0F4FF;
+      --warn-border: #A5B8F0;
+      --radius: 16px;
+      --font: 'DM Sans', system-ui, -apple-system, sans-serif;
+      --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
     }
 
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:var(--sans);
-      background:var(--bg);
-      color:var(--text);
-      line-height:1.7;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
     }
 
-    a{color:var(--primary); text-decoration:none}
-    a:hover{text-decoration:underline}
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
-    .container{
-      max-width:960px;
-      margin:0 auto;
-      padding:28px 18px 60px;
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 32px 20px 72px;
     }
 
-    /* ===== Header ===== */
-    .hero{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:22px;
-      box-shadow:none;
-      padding:16px 18px 14px;
-      margin-bottom:18px;
+    /* ===== Hero ===== */
+    .hero {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 28px 28px 24px;
+      margin-bottom: 20px;
     }
 
-    .heroTop{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:14px;
+    .hero-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
     }
 
-    .heroLeft{
-      display:flex;
-      gap:14px;
-      align-items:flex-start;
-      min-width:0;
+    .hero-left {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      min-width: 0;
     }
 
-    .heroRight{
-      display:flex;
-      align-items:flex-start;
-      gap:8px;
-      flex-wrap:nowrap;
-      justify-content:flex-end;
-      padding-top:0;
-      white-space:nowrap;
+    .logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      object-fit: contain;
+      flex: 0 0 auto;
     }
 
-    .heroMeta{
-      margin-top:10px;
-      overflow:hidden;
+    .hero-title {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.4px;
+      line-height: 1.2;
     }
 
-    .logo{
-      width:44px;
-      height:44px;
-      border-radius:14px;
-      background:none;
-      object-fit:contain;
-      box-shadow: none;
-      flex:0 0 auto;
+    .hero-subtitle {
+      font-size: 13.5px;
+      color: var(--muted);
+      margin-top: 2px;
     }
 
-    .heroText{ min-width:0; }
-
-    h1{
-      font-size:28px;
-      margin:0 0 2px;
-      letter-spacing:-.4px;
-      line-height:1.1;
+    .hero-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
     }
 
-    /* Keep subtitle hidden (as your original choice) */
-    .subtitle{ display:none; }
+    .nav-btn {
+      display: inline-block;
+      padding: 7px 14px;
+      border-radius: 10px;
+      background: var(--primary-soft);
+      border: 1px solid var(--primary-border);
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 500;
+      white-space: nowrap;
+      transition: background 0.15s;
+    }
+    .nav-btn:hover { background: #dce6fd; text-decoration: none; }
 
-    .navBtn{
-      display:inline-block;
-      padding:6px 11px;
-      border-radius:10px;
-      background:#EFF6FF;
-      border:1px solid #BFDBFE;
-      color:#1D4ED8;
-      font-size:12.5px;
-      white-space:nowrap;
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
     }
 
-    .pills{
-      display:flex;
-      flex-wrap:nowrap;
-      gap:7px;
-      margin-top:0;
-      min-width:0;
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #FAFBFF;
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+    .tag b { font-weight: 600; color: var(--text); }
+
+    @media (max-width: 700px) {
+      .hero-top { flex-direction: column; }
+      .hero-nav { justify-content: flex-start; }
     }
 
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:5px 9px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:#F8FAFF;
-      color:#334155;
-      font-size:12px;
-      white-space:nowrap;
+    /* ===== Section cards ===== */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 26px 28px;
+      margin-bottom: 20px;
     }
 
-    .pill b{
-      font-weight:700;
-      color:#0F172A;
+    .card h2 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      letter-spacing: -0.2px;
     }
 
-    @media (max-width:760px){
-      .heroTop{ flex-direction:column; align-items:stretch; }
-      .heroRight{ justify-content:flex-start; }
-      .heroMeta{ overflow:visible; }
-      .pills{ flex-wrap:wrap; }
+    .card p {
+      font-size: 14.5px;
+      color: var(--muted);
+      margin-bottom: 12px;
+      line-height: 1.75;
+    }
+    .card p:last-child { margin-bottom: 0; }
+
+    .card ul {
+      padding-left: 20px;
+      margin: 8px 0 14px;
+    }
+    .card li {
+      font-size: 14.5px;
+      color: var(--muted);
+      margin: 6px 0;
+      line-height: 1.7;
+    }
+    .card li strong { color: var(--text); }
+
+    /* Key-value grid */
+    .kv {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 10px 16px;
+      font-size: 14.5px;
+    }
+    .kv dt { font-weight: 600; color: #3A3F52; }
+    .kv dd { color: var(--muted); }
+
+    .mono {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--text);
+      word-break: break-all;
     }
 
-    /* ===== Cards ===== */
-    .card{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      box-shadow: none;
-      padding:20px;
-      margin-bottom:18px;
+    /* Reference rows */
+    .ref {
+      display: grid;
+      grid-template-columns: 170px 1fr auto;
+      gap: 10px 14px;
+      align-items: center;
+      padding: 12px 0;
+      border-top: 1px solid #F0F1F5;
+    }
+    .ref:first-of-type { border-top: 0; padding-top: 0; }
+
+    .ref-label {
+      font-weight: 600;
+      font-size: 13.5px;
+      color: #3A3F52;
     }
 
-    h2{
-      margin:0 0 10px;
-      font-size:16px;
+    .ref-btn {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 10px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      color: var(--primary);
+      font-size: 12.5px;
+      font-weight: 500;
+      white-space: nowrap;
+      transition: border-color 0.15s;
+    }
+    .ref-btn:hover { border-color: var(--primary); text-decoration: none; }
+
+    @media (max-width: 640px) {
+      .ref { grid-template-columns: 1fr; gap: 4px; }
+      .kv { grid-template-columns: 1fr; gap: 6px; }
+      .container { padding: 24px 16px 56px; }
+      .card { padding: 22px 20px; }
+      .hero { padding: 22px 20px 18px; }
     }
 
-    p{
-      margin:10px 0;
-      font-size:14.5px;
-      color:var(--muted);
+    /* Notice */
+    .notice {
+      margin-top: 16px;
+      padding: 14px 16px;
+      background: var(--warn-bg);
+      border-left: 3px solid var(--warn-border);
+      border-radius: 10px;
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.7;
     }
 
-    ul{
-      margin:10px 0;
-      padding-left:18px;
-      color:var(--muted);
-      font-size:14.5px;
+    /* Allocation table */
+    .alloc-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin: 12px 0;
+    }
+    .alloc-table th {
+      text-align: left;
+      font-weight: 600;
+      color: #3A3F52;
+      padding: 10px 12px;
+      border-bottom: 2px solid var(--line);
+      font-size: 13px;
+    }
+    .alloc-table td {
+      padding: 10px 12px;
+      color: var(--muted);
+      border-bottom: 1px solid #F0F1F5;
+    }
+    .alloc-table tr:last-child td { border-bottom: 0; }
+
+    /* Visual bar for allocation */
+    .bar-wrap {
+      display: flex;
+      height: 10px;
+      border-radius: 6px;
+      overflow: hidden;
+      margin: 16px 0 10px;
+      background: #F0F1F5;
+    }
+    .bar-seg {
+      height: 100%;
+      transition: width 0.4s ease;
     }
 
-    .kv{
-      display:grid;
-      grid-template-columns:160px 1fr;
-      gap:10px 14px;
-      font-size:14.5px;
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+    .legend-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+      margin-right: 5px;
+      vertical-align: middle;
     }
 
-    .kv strong{
-      font-weight:600;
-      color:#334155;
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 24px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 4px;
+      bottom: 4px;
+      width: 2px;
+      background: var(--line);
+      border-radius: 2px;
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -24px;
+      top: 6px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 3px solid var(--primary);
+      background: var(--card);
+    }
+    .timeline-item.done::before {
+      background: var(--primary);
+    }
+    .timeline-label {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+    .timeline-desc {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.65;
     }
 
-    .mono{
-      font-family:var(--mono);
-      font-size:13.6px;
-      color:#0F172A;
-      word-break:break-all;
-    }
-
-    .notice{
-      margin-top:12px;
-      padding:12px;
-      background:#F8FAFF;
-      border-left:4px solid #93C5FD;
-      border-radius:12px;
-      font-size:14px;
-      color:#334155;
-    }
-
-    .refRow{
-      display:grid;
-      grid-template-columns:160px 1fr auto;
-      gap:10px 14px;
-      align-items:center;
-      padding:10px 0;
-      border-top:1px dashed #E5E7EB;
-    }
-    .refRow:first-of-type{ border-top:0; padding-top:0; }
-    .refKey{ color:#334155; font-weight:600; font-size:14px; }
-    .refActions{ display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
-    .refBtn{
-      display:inline-block;
-      padding:8px 12px;
-      border-radius:12px;
-      background:#FFFFFF;
-      border:1px solid var(--line);
-      color:#1D4ED8;
-      font-size:13px;
-      white-space:nowrap;
-    }
-
-    footer{
-      text-align:center;
-      margin-top:26px;
-      font-size:12.5px;
-      color:var(--muted);
-    }
-
-    @media (max-width:600px){
-      h1{font-size:28px}
-      .kv{grid-template-columns:1fr}
-      .refRow{ grid-template-columns:1fr; }
-      .refActions{ justify-content:flex-start; }
-      .container{padding:22px 14px 50px}
-      .hero{ padding:16px; }
-      .logo{ width:44px; height:44px; border-radius:14px; }
+    footer {
+      text-align: center;
+      margin-top: 32px;
+      font-size: 12px;
+      color: var(--light);
+      line-height: 1.8;
     }
   </style>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Tang Xuliu (TXL)",
-  "url": "https://tangxuliu.xyz",
-  "logo": "https://tangxuliu.xyz/assets/logo.svg",
-  "sameAs": [
-    "https://www.linkedin.com/in/xuliu-tang-7378ba357"
-  ],
-  "founder": {
-    "@type": "Person",
-    "name": "Tang Xuliu",
-    "jobTitle": "Independent Developer",
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Tang Xuliu (TXL)",
+    "url": "https://tangxuliu.xyz",
+    "logo": "https://tangxuliu.xyz/assets/logo.svg",
     "sameAs": [
-      "https://www.linkedin.com/in/xuliu-tang-7378ba357"
-    ]
-  },
-  "description": "TXL (Tang Xuliu) is an independently developed ERC-20 infrastructure experiment on Ethereum focused on on-chain transparency and structured token mechanics."
-}
-</script>
-
-<link rel="canonical" href="https://tangxuliu.xyz/">
-  
+      "https://www.linkedin.com/in/xuliu-tang-7378ba357",
+      "https://github.com/tangxuliu1-create/txl-token",
+      "https://t.me/TangXuliu"
+    ],
+    "founder": {
+      "@type": "Person",
+      "name": "Tang Xuliu",
+      "jobTitle": "Independent Developer",
+      "sameAs": ["https://www.linkedin.com/in/xuliu-tang-7378ba357"]
+    },
+    "description": "TXL is a personal ERC-20 token created by Tang Xuliu as a hands-on blockchain learning project, featuring structured vesting, Uniswap V2 liquidity, and full on-chain transparency."
+  }
+  </script>
 </head>
 
 <body>
   <div class="container">
 
-    <!-- Header -->
+    <!-- Hero -->
     <section class="hero">
-      <div class="heroTop">
-        <div class="heroLeft">
-          <img class="logo" src="https://tangxuliu.xyz/assets/logo.svg" alt="TXL Logo">
-
-          <div class="heroText">
-            <h1>Tang Xuliu (TXL)</h1>
+      <div class="hero-top">
+        <div class="hero-left">
+          <img class="logo" src="https://tangxuliu.xyz/assets/logo.svg" alt="TXL Logo" />
+          <div>
+            <div class="hero-title">Tang Xuliu (TXL)</div>
+            <div class="hero-subtitle">Personal ERC-20 Token on Ethereum</div>
           </div>
         </div>
-
-        <div class="heroRight">
-          <a class="navBtn" href="https://tangxuliu.xyz/whitepaper.html" target="_blank" rel="noopener noreferrer">TXL Whitepaper</a>
-
-          <!-- NEW: LinkedIn -->
-          <a class="navBtn" href="https://www.linkedin.com/in/xuliu-tang-7378ba357" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-
-          <a class="navBtn" href="mailto:contact@tangxuliu.xyz">Contact Email</a>
+        <div class="hero-nav">
+          <a class="nav-btn" href="https://tangxuliu.xyz/whitepaper.html">Whitepaper</a>
+          <a class="nav-btn" href="https://www.linkedin.com/in/xuliu-tang-7378ba357" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="nav-btn" href="mailto:contact@tangxuliu.xyz">Email</a>
         </div>
-
       </div>
-
-      <div class="heroMeta" aria-label="Key attributes">
-        <div class="pills">
-          <span class="pill"><b>Standard</b> ERC-20</span>
-          <span class="pill"><b>Network</b> Ethereum Mainnet</span>
-          <span class="pill"><b>Supply</b> 10,000,000 TXL</span>
-          <span class="pill"><b>Status</b> On-chain</span>
-        </div>
+      <div class="tags">
+        <span class="tag"><b>Standard</b> ERC-20</span>
+        <span class="tag"><b>Network</b> Ethereum Mainnet</span>
+        <span class="tag"><b>Total Supply</b> 10,000,000 TXL</span>
+        <span class="tag"><b>Decimals</b> 18</span>
+        <span class="tag"><b>Liquidity</b> Uniswap V2</span>
       </div>
     </section>
 
-    <!-- Token Summary -->
+    <!-- What is TXL -->
     <div class="card">
-      <h2>Token Summary</h2>
-      <div class="kv">
-        <strong>Token Name</strong><div>Tang Xuliu</div>
-        <strong>Symbol</strong><div class="mono">TXL</div>
-        <strong>Network</strong><div>Ethereum Mainnet</div>
-        <strong>Supply Model</strong><div>Fixed supply (10,000,000 TXL)</div>
-      </div>
+      <h2>What is TXL?</h2>
+      <p>
+        TXL is a personal token I created under my own name, Tang Xuliu. It is deployed as a standard ERC-20 contract on Ethereum mainnet.
+      </p>
+      <p>
+        The purpose of this project is straightforward: I wanted to go through the entire lifecycle of creating and managing a real token on a public blockchain — writing and deploying the smart contract, setting up liquidity on Uniswap, implementing a vesting schedule with time-locked releases, and managing LP tokens through a multi-signature wallet.
+      </p>
+      <p>
+        TXL is not affiliated with any company or organization. It does not represent equity, governance rights, or any promise of financial returns. It is a personal, independently maintained on-chain project.
+      </p>
+    </div>
 
+    <!-- Token Details -->
+    <div class="card">
+      <h2>Token Details</h2>
+      <dl class="kv">
+        <dt>Token Name</dt>
+        <dd>Tang Xuliu</dd>
+        <dt>Symbol</dt>
+        <dd class="mono">TXL</dd>
+        <dt>Network</dt>
+        <dd>Ethereum Mainnet</dd>
+        <dt>Total Supply</dt>
+        <dd>10,000,000 TXL (fixed, no minting)</dd>
+        <dt>Decimals</dt>
+        <dd>18</dd>
+        <dt>Contract</dt>
+        <dd class="mono">0x68c98Bb7d641c377B23cC4886d84C16a4eC3d5b8</dd>
+      </dl>
       <div class="notice">
-        This page is for information disclosure purposes only and does not constitute financial advice.
-        No guarantees are made regarding outcomes, returns, or profits.
-        Digital assets involve market risks, please participate cautiously.
+        This page is for information disclosure only. It does not constitute financial advice. Digital assets carry market risks — please evaluate independently before any on-chain interaction.
       </div>
     </div>
 
-    <!-- On-chain References -->
+    <!-- Token Allocation -->
     <div class="card">
-      <h2>On-chain References</h2>
+      <h2>Token Allocation</h2>
 
-      <div class="refRow">
-        <div class="refKey">Token Contract</div>
+      <div class="bar-wrap">
+        <div class="bar-seg" style="width:10%; background:#3B6CF0;"></div>
+        <div class="bar-seg" style="width:90%; background:#93B4F8;"></div>
+      </div>
+      <div class="legend">
+        <span><span class="legend-dot" style="background:#3B6CF0;"></span>Initial Circulating — 1,000,000 TXL (10%)</span>
+        <span><span class="legend-dot" style="background:#93B4F8;"></span>Locked / Vesting — 9,000,000 TXL (90%)</span>
+      </div>
+
+      <table class="alloc-table">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Amount</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Initial Circulating</strong></td>
+            <td>1,000,000 TXL</td>
+            <td>Used to provide initial liquidity in the Uniswap V2 TXL/WETH pool</td>
+          </tr>
+          <tr>
+            <td><strong>Locked (Vesting)</strong></td>
+            <td>9,000,000 TXL</td>
+            <td>Held in a time-lock smart contract, releasing 150,000 TXL per month (~60 month schedule)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        The 90/10 split was chosen intentionally: only a small portion enters circulation at launch, while the majority is released gradually over approximately 5 years. This structure was designed to practice implementing a real vesting mechanism and to keep initial circulating supply low.
+      </p>
+      <p>
+        The monthly release amount of 150,000 TXL (1.5% of total supply) was set to create a predictable, steady schedule that can be verified on-chain at any time.
+      </p>
+    </div>
+
+    <!-- On-chain Contracts -->
+    <div class="card">
+      <h2>On-chain Contracts & References</h2>
+
+      <div class="ref">
+        <div class="ref-label">Token Contract</div>
         <div class="mono">0x68c98Bb7d641c377B23cC4886d84C16a4eC3d5b8</div>
-        <div class="refActions">
-          <a class="refBtn" href="https://etherscan.io/address/0x68c98Bb7d641c377B23cC4886d84C16a4eC3d5b8" target="_blank" rel="noopener noreferrer">View</a>
-        </div>
+        <a class="ref-btn" href="https://etherscan.io/address/0x68c98Bb7d641c377B23cC4886d84C16a4eC3d5b8" target="_blank" rel="noopener noreferrer">Etherscan ↗</a>
       </div>
 
-      <div class="refRow">
-        <div class="refKey">Liquidity Pool</div>
-        <div class="mono">0x544d96690114962De062BcED8566e6f4e6241Df0</div>
-        <div class="refActions">
-          <a class="refBtn" href="https://etherscan.io/address/0x544d96690114962De062BcED8566e6f4e6241Df0" target="_blank" rel="noopener noreferrer">View</a>
-        </div>
-      </div>
-
-      <div class="refRow">
-        <div class="refKey">Vesting / Lock Contract</div>
+      <div class="ref">
+        <div class="ref-label">Vesting / Lock Contract</div>
         <div class="mono">0xb0f535a1aCbBE03164FF3F1d8F2EcdeD5d2Bd6c9</div>
-        <div class="refActions">
-          <a class="refBtn" href="https://etherscan.io/address/0xb0f535a1aCbBE03164FF3F1d8F2EcdeD5d2Bd6c9" target="_blank" rel="noopener noreferrer">View</a>
-        </div>
+        <a class="ref-btn" href="https://etherscan.io/address/0xb0f535a1aCbBE03164FF3F1d8F2EcdeD5d2Bd6c9" target="_blank" rel="noopener noreferrer">Etherscan ↗</a>
       </div>
 
-      <p style="margin-top:12px;">
-        All references above are publicly verifiable on Ethereum mainnet via block explorers.
-      </p>
-    </div>
-
-
-    <!-- Liquidity Transparency (New: on-chain verifiable, no over-claims) -->
-    <div class="card">
-      <h2>Liquidity Transparency</h2>
-      
-
-      <div class="refRow">
-        <div class="refKey">Liquidity Safe (Multi‑sig)</div>
-        <div class="mono">0xf339FA7c9c67959791FaB3Dff85cBF40ee6D5C07</div>
-        <div class="refActions">
-          <a class="refBtn" href="https://etherscan.io/address/0xf339FA7c9c67959791FaB3Dff85cBF40ee6D5C07" target="_blank" rel="noopener noreferrer">View</a>
-        </div>
-      </div>
-
-      <div class="refRow">
-        <div class="refKey">LP Token (Uniswap V2 Pair)</div>
+      <div class="ref">
+        <div class="ref-label">Uniswap V2 Pair (TXL/WETH)</div>
         <div class="mono">0x544d96690114962De062BcED8566e6f4e6241Df0</div>
-        <div class="refActions">
-          <a class="refBtn" href="https://etherscan.io/token/0x544d96690114962De062BcED8566e6f4e6241Df0" target="_blank" rel="noopener noreferrer">View</a>
-        </div>
+        <a class="ref-btn" href="https://etherscan.io/address/0x544d96690114962De062BcED8566e6f4e6241Df0" target="_blank" rel="noopener noreferrer">Etherscan ↗</a>
       </div>
 
-      <div class="refRow">
-        <div class="refKey">Pool Market Page</div>
-        <div class="mono">https://dexscreener.com/ethereum/0x544d96690114962De062BcED8566e6f4e6241Df0</div>
-        <div class="refActions">
-          <a class="refBtn" href="https://dexscreener.com/ethereum/0x544d96690114962De062BcED8566e6f4e6241Df0" target="_blank" rel="noopener noreferrer">View</a>
-        </div>
+      <div class="ref">
+        <div class="ref-label">LP Safe (Multi-sig)</div>
+        <div class="mono">0xf339FA7c9c67959791FaB3Dff85cBF40ee6D5C07</div>
+        <a class="ref-btn" href="https://etherscan.io/address/0xf339FA7c9c67959791FaB3Dff85cBF40ee6D5C07" target="_blank" rel="noopener noreferrer">Etherscan ↗</a>
       </div>
 
-      <div class="notice">
-        Liquidity-related assets (LP tokens) for the primary TXL/WETH pool are held under a multi-signature Safe wallet.
-        This provides on-chain verifiable custody and reduces single-signer risk.
+      <div class="ref">
+        <div class="ref-label">DEX Market Data</div>
+        <div class="mono" style="font-family:var(--font); font-size:14px;">DexScreener TXL/WETH Pool</div>
+        <a class="ref-btn" href="https://dexscreener.com/ethereum/0x544d96690114962De062BcED8566e6f4e6241Df0" target="_blank" rel="noopener noreferrer">View ↗</a>
       </div>
     </div>
 
-    <!-- Project Overview (Upgraded wording for reviewer confidence) -->
+    <!-- Liquidity & Security -->
     <div class="card">
-      <h2>Project Overview</h2>
+      <h2>Liquidity & Security Measures</h2>
       <p>
-        Tang Xuliu (TXL) is an independently developed ERC-20 token deployed on Ethereum, focused on transparent token mechanics,
-        on-chain infrastructure experimentation, and long-term vesting research.
+        The TXL/WETH trading pair is live on Uniswap V2. The LP tokens generated from providing liquidity are not held in a personal wallet — they are stored in a Gnosis Safe multi-signature wallet to reduce single-point-of-failure risk.
       </p>
-
       <p>
-      TXL is published as a long-term public on-chain project with transparent disclosures and verifiable infrastructure references.
+        This means LP tokens cannot be withdrawn by any single signer alone. The multi-sig setup and its transaction history are publicly visible on Etherscan.
       </p>
-
       <p>
-        TXL does not represent equity, ownership, or governance rights in any entity. All token-related activities and data are publicly verifiable on-chain.
+        90% of the total TXL supply is locked in a separate time-lock smart contract with a fixed monthly release schedule. The lock contract address and its release transactions are verifiable on-chain.
       </p>
     </div>
 
-    <!-- Founder & Development (New: high-weight for Etherscan) -->
+    <!-- About the Creator -->
     <div class="card">
-      <h2>Founder & Development</h2>
+      <h2>About the Creator</h2>
       <p>
-        TXL is developed and maintained independently with a primary focus on public on-chain transparency and verifiable disclosures.
+        My name is Tang Xuliu. I am an independent developer with an interest in blockchain technology and smart contract development.
       </p>
-      <ul>
-        <li><strong>Founder:</strong> Tang Xuliu</li>
-        <li><strong>Role:</strong> Independent Developer</li>
-        <li><strong>Focus:</strong> Token mechanics, vesting structures, liquidity-related testing, and infrastructure-oriented experimentation on Ethereum</li>
-      </ul>
       <p>
-        Official communications are published through the channels listed below.
+        I created TXL as a personal project to gain hands-on experience with the full process of deploying and managing a token on Ethereum — from writing Solidity contracts to interacting with DeFi protocols like Uniswap and Gnosis Safe. This project is a learning exercise and a long-term personal commitment to maintaining a transparent on-chain presence.
       </p>
+      <p>
+        I am the sole developer and maintainer of TXL. There is no team, no investors, and no fundraising. All development work is done independently.
+      </p>
+      <dl class="kv" style="margin-top: 14px;">
+        <dt>Name</dt>
+        <dd>Tang Xuliu</dd>
+        <dt>Role</dt>
+        <dd>Independent Developer &amp; Sole Maintainer</dd>
+        <dt>LinkedIn</dt>
+        <dd><a href="https://www.linkedin.com/in/xuliu-tang-7378ba357" target="_blank" rel="noopener noreferrer">linkedin.com/in/xuliu-tang-7378ba357</a></dd>
+        <dt>GitHub</dt>
+        <dd><a href="https://github.com/tangxuliu1-create/txl-token" target="_blank" rel="noopener noreferrer">github.com/tangxuliu1-create/txl-token</a></dd>
+      </dl>
     </div>
 
-    <!-- Tokenomics & Vesting -->
+    <!-- Project Progress -->
     <div class="card">
-      <h2>Tokenomics & Vesting</h2>
-      <p><strong>Total Supply:</strong> 10,000,000 TXL (Fixed Supply)</p>
-
-      <p><strong>Initial Circulating Supply:</strong></p>
-      <ul>
-        <li>1,000,000 TXL initially available</li>
-        <li>9,000,000 TXL locked via on-chain vesting contracts</li>
-      </ul>
-
-      <p><strong>Vesting & Lock Details:</strong></p>
-      <ul>
-        <li>9,000,000 TXL locked using decentralized smart contracts</li>
-        <li>Monthly release: 150,000 TXL</li>
-        <li>Liquidity pool (LP) tokens held in a multi-signature Safe wallet (verifiable on-chain)</li>
-        <li>All locks are verifiable on Ethereum mainnet via explorers</li>
-      </ul>
-
-      <p>
-        The initial circulating supply is allocated for liquidity provisioning and on-chain participation.
+      <h2>Project Progress</h2>
+      <p style="margin-bottom: 18px;">
+        Rather than a speculative roadmap, this section documents what has actually been completed and what is planned next.
       </p>
-    </div>
-
-    <!-- Roadmap (New: reviewer confidence) -->
-    <div class="card">
-      <h2>Project Roadmap</h2>
-      <ul>
-        <li><strong>Phase 1:</strong> Token deployment and on-chain infrastructure setup</li>
-        <li><strong>Phase 2:</strong> Liquidity provisioning and vesting implementation</li>
-        <li><strong>Phase 3:</strong> Transparency framework and public information disclosure</li>
-        <li><strong>Phase 4:</strong> Long-term on-chain experimentation and ecosystem exploration</li>
-      </ul>
-      <p>
-        Roadmap items may evolve based on technical findings and security considerations.
-      </p>
-    </div>
-
-    <!-- Official Channels (New: reviewer confidence, avoids placeholders) -->
-    <div class="card">
-      <h2>Official Channels & Documentation</h2>
-
-      
-
-      <div class="refRow">
-        <div class="refKey">Whitepaper</div>
-        <div class="mono">https://tangxuliu.xyz/whitepaper.html</div>
-        <div class="refActions">
-          <a class="refBtn" href="https://tangxuliu.xyz/whitepaper.html" target="_blank" rel="noopener noreferrer">Open</a>
+      <div class="timeline">
+        <div class="timeline-item done">
+          <div class="timeline-label">ERC-20 Contract Deployment ✓</div>
+          <div class="timeline-desc">Wrote and deployed the TXL token contract on Ethereum mainnet. Source code verified on Etherscan.</div>
+        </div>
+        <div class="timeline-item done">
+          <div class="timeline-label">Uniswap V2 Liquidity ✓</div>
+          <div class="timeline-desc">Created TXL/WETH pair on Uniswap V2 and provided initial liquidity from the circulating supply.</div>
+        </div>
+        <div class="timeline-item done">
+          <div class="timeline-label">Vesting Contract & Token Lock ✓</div>
+          <div class="timeline-desc">Deployed a time-lock contract holding 9,000,000 TXL with a 150,000 TXL/month release schedule.</div>
+        </div>
+        <div class="timeline-item done">
+          <div class="timeline-label">Multi-sig LP Custody ✓</div>
+          <div class="timeline-desc">Transferred LP tokens to a Gnosis Safe multi-signature wallet to eliminate single-signer risk.</div>
+        </div>
+        <div class="timeline-item done">
+          <div class="timeline-label">Website & Documentation ✓</div>
+          <div class="timeline-desc">Published this website and the whitepaper with full contract references and project documentation.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-label">Etherscan Token Page Update</div>
+          <div class="timeline-desc">Applying to update the official token information page on Etherscan with verified project details.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-label">Ongoing Maintenance</div>
+          <div class="timeline-desc">Continue monitoring vesting releases, maintaining documentation, and exploring potential improvements to the project infrastructure.</div>
         </div>
       </div>
-
-      <div class="refRow">
-        <div class="refKey">LinkedIn</div>
-        <div class="mono">https://www.linkedin.com/in/xuliu-tang-7378ba357/</div>
-        <div class="refActions">
-          <a class="refBtn" href="https://www.linkedin.com/in/xuliu-tang-7378ba357/" target="_blank" rel="noopener noreferrer">Open</a>
-        </div>
-      </div>
-
-      <div class="refRow">
-        <div class="refKey">GitHub</div>
-        <div class="mono">https://github.com/tangxuliu1-create/txl-token</div>
-        <div class="refActions">
-          <a class="refBtn" href="https://github.com/tangxuliu1-create/txl-token" target="_blank" rel="noopener noreferrer">Open</a>
-        </div>
-      </div>
-
-      <div class="refRow">
-        <div class="refKey">Telegram</div>
-        <div class="mono">https://t.me/TangXuliu</div>
-        <div class="refActions">
-          <a class="refBtn" href="https://t.me/TangXuliu" target="_blank" rel="noopener noreferrer">Open</a>
-        </div>
-      </div>
-
-      <p style="margin-top:12px;">
-        Contact email: <a href="mailto:contact@tangxuliu.xyz">contact@tangxuliu.xyz</a>
-      </p>
     </div>
 
-    <!-- Transparency & Disclaimer -->
+    <!-- Official Channels -->
     <div class="card">
-      <h2>Transparency & Disclaimer</h2>
-      <p>
-        TXL is an independently developed blockchain project with publicly verifiable on-chain data.
-        Users are encouraged to review smart contract data and on-chain records before interacting with any token-related activity.
-      </p>
-      <div class="notice">
-        Risk reminder: interacting on-chain involves irreversible transactions and market risks. Please participate cautiously.
+      <h2>Official Channels</h2>
+
+      <div class="ref">
+        <div class="ref-label">Website</div>
+        <div class="mono" style="font-family:var(--font); font-size:14px;">tangxuliu.xyz</div>
+        <a class="ref-btn" href="https://tangxuliu.xyz" target="_blank" rel="noopener noreferrer">Open ↗</a>
       </div>
+
+      <div class="ref">
+        <div class="ref-label">Whitepaper</div>
+        <div class="mono" style="font-family:var(--font); font-size:14px;">tangxuliu.xyz/whitepaper.html</div>
+        <a class="ref-btn" href="https://tangxuliu.xyz/whitepaper.html" target="_blank" rel="noopener noreferrer">Open ↗</a>
+      </div>
+
+      <div class="ref">
+        <div class="ref-label">LinkedIn</div>
+        <div class="mono" style="font-family:var(--font); font-size:14px;">linkedin.com/in/xuliu-tang-7378ba357</div>
+        <a class="ref-btn" href="https://www.linkedin.com/in/xuliu-tang-7378ba357/" target="_blank" rel="noopener noreferrer">Open ↗</a>
+      </div>
+
+      <div class="ref">
+        <div class="ref-label">GitHub</div>
+        <div class="mono" style="font-family:var(--font); font-size:14px;">github.com/tangxuliu1-create/txl-token</div>
+        <a class="ref-btn" href="https://github.com/tangxuliu1-create/txl-token" target="_blank" rel="noopener noreferrer">Open ↗</a>
+      </div>
+
+      <div class="ref">
+        <div class="ref-label">Telegram</div>
+        <div class="mono" style="font-family:var(--font); font-size:14px;">t.me/TangXuliu</div>
+        <a class="ref-btn" href="https://t.me/TangXuliu" target="_blank" rel="noopener noreferrer">Open ↗</a>
+      </div>
+
+      <div class="ref">
+        <div class="ref-label">Email</div>
+        <div class="mono" style="font-family:var(--font); font-size:14px;">contact@tangxuliu.xyz</div>
+        <a class="ref-btn" href="mailto:contact@tangxuliu.xyz">Send ↗</a>
+      </div>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="card">
+      <h2>Disclaimer</h2>
+      <p>
+        TXL is a personal project created for learning and experimentation purposes. It is not a security, investment product, or financial instrument of any kind. No promises of returns, profits, or price appreciation are made or implied.
+      </p>
+      <p>
+        All on-chain interactions are irreversible. Users should independently verify all contract addresses and transaction data before interacting with TXL or any related smart contracts. The creator assumes no liability for any losses incurred from on-chain participation.
+      </p>
     </div>
 
     <footer>
-      © <span id="y"></span> Tang Xuliu (TXL). This page is for information disclosure only.<br />
-      <span style="display:inline-block;margin-top:6px;">Information Disclosure · Independently Developed ERC-20 Token</span>
+      &copy; <script>document.write(new Date().getFullYear())</script> Tang Xuliu (TXL) &middot; Personal on-chain project<br />
+      This website is for information disclosure only.
     </footer>
 
   </div>
-
-  <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
